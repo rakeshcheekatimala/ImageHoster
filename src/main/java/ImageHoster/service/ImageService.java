@@ -46,11 +46,4 @@ public class ImageService {
     public void deleteImage(Integer imageId) {
         imageRepository.deleteImage(imageId);
     }
-
-    //The method calls the getImage() method in the Repository and then returns the getUser details
-
-    public User getImageUser(Integer imageId){
-        Image currentImage = imageRepository.getImage(imageId);
-        return currentImage.getUser();
-    }
 }

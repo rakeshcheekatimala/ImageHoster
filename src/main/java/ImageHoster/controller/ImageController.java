@@ -111,7 +111,7 @@ public class ImageController {
     @RequestMapping(value = "/editImage")
     public String editImage(@RequestParam("imageId") Integer imageId, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         Image image = imageService.getImage(imageId);
-        User currentUser = imageService.getImageUser(imageId);
+        User currentUser  = image.getUser();
         if(verifyLoggedInUser(currentUser, session)) {
             String tags = convertTagsToString(image.getTags());
             model.addAttribute("image", image);
@@ -167,8 +167,9 @@ public class ImageController {
     //Looks for a controller method with request mapping of type '/images'
     @RequestMapping(value = "/deleteImage", method = RequestMethod.DELETE)
     public String deleteImageSubmit(@RequestParam(name = "imageId") Integer imageId, HttpSession session, RedirectAttributes redirectAttributes,Model model) {
-        User currentUser = imageService.getImageUser(imageId);
+
         Image image = imageService.getImage(imageId);
+        User currentUser = image.getUser();
         if(verifyLoggedInUser(currentUser, session)) {
             imageService.deleteImage(imageId);
             return "redirect:/images";
