@@ -1,6 +1,7 @@
 package ImageHoster.service;
 
 import ImageHoster.model.Image;
+import ImageHoster.model.User;
 import ImageHoster.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,4 +47,10 @@ public class ImageService {
         imageRepository.deleteImage(imageId);
     }
 
+    //The method calls the getImage() method in the Repository and then returns the getUser details
+
+    public User getImageUser(Integer imageId){
+        Image currentImage = imageRepository.getImage(imageId);
+        return currentImage.getUser();
+    }
 }
