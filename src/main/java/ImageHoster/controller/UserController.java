@@ -44,6 +44,7 @@ public class UserController {
     @RequestMapping(value = "users/registration", method = RequestMethod.POST)
     public String registerUser(User user, Model model, RedirectAttributes redirectAttributes) {
         String password = user.getPassword();
+        // this verifies whether the password is matched with the regex defined
         Boolean isPasswordValid = Pattern.matches("^(?=.*[\\d])(?=.*[\\a-zA-Z])(?=.*[\\W_]).*$",password);
         String error = "Password must contain atleast 1 alphabet, 1 number & 1 special character";
         System.out.println("PasswordValid"+isPasswordValid+ "Password"+password);
