@@ -38,6 +38,7 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    // Since the mapping is Many to Many a new table is created with primary keys of images & comments
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "image_id")
     private Image image;

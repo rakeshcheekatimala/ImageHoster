@@ -7,8 +7,15 @@ import java.util.List;
 
 @Repository
 public class CommentRepository {
+    //Get an instance of EntityManagerFactory from persistence unit with name as 'imageHoster'
     @PersistenceUnit(unitName = "imageHoster")
     private EntityManagerFactory emf;
+
+    //The method receives the Comment object to be persisted in the database
+    //Creates an instance of EntityManager
+    //Starts a transaction
+    //The transaction is committed if it is successful
+    //The transaction is rolled back in case of unsuccessful transaction
 
     public Comment createComment(Comment comment) {
         EntityManager em;
@@ -25,7 +32,9 @@ public class CommentRepository {
         return comment;
     }
 
-    // Returns all the comments associated to a image based on imageID
+    //The method creates an instance of EntityManager
+    //Executes JPQL query to fetch all the getAllComments from the database based on imageID
+    //Returns the list of all the Comments fetched from the database
     public List<Comment> getAllComments(Integer imageId) {
         EntityManager em = emf.createEntityManager();
         try {
